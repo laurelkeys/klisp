@@ -1,7 +1,7 @@
-fun main(args : Array<String>) {
+fun main(args: Array<String>) {
     while (true) {
         val input = readLine() ?: break // break if null (EOF)
-        print("user> ${rep(input)}")
+        println("user> ${rep(input)}")
     }
 }
 
