@@ -2,7 +2,7 @@
 A Lisp interpreter written in Kotlin, based on Mal's ([Make-a-Lisp](https://github.com/kanaka/mal)) process guide.
 
 ## Completed steps
-- [ ] [Step 0: The REPL](https://github.com/kanaka/mal/blob/master/process/guide.md#step-0-the-repl)
+- [x] [Step 0: The REPL](https://github.com/kanaka/mal/blob/master/process/guide.md#step-0-the-repl)
 - [ ] [Step 1: Read and Print](https://github.com/kanaka/mal/blob/master/process/guide.md#step-1-read-and-print)
 - [ ] [Step 2: Eval](https://github.com/kanaka/mal/blob/master/process/guide.md#step-2-eval)
 - [ ] [Step 3: Environments](https://github.com/kanaka/mal/blob/master/process/guide.md#step-3-environments)
