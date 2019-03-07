@@ -1,10 +1,10 @@
 package tests
 
+import Step0.rep
 import org.junit.Test
-import rep
 import kotlin.test.assertEquals
 
-internal class Step0 {
+internal class Step0Test {
 
     @Test
     fun testBasicString() {

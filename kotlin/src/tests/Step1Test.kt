@@ -1,10 +1,10 @@
 package tests
 
-import ReadEvalPrint.rep
+import Step1.rep
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class Step1 {
+internal class Step1Test {
     @Test
     fun testingReadOfNumbers() {
         assertEquals("1", rep("1"))
