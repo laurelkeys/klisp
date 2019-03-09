@@ -11,6 +11,9 @@ val FALSE = MalConstant("false")
 class MalList(val elements: ArrayList<MalType>) : MalType {
     constructor() : this(ArrayList<MalType>())
 
+    val head: MalType = elements.first()
+    val tail: MalList = apply { elements.drop(1) }
+
     fun add(element: MalType) = elements.add(element)
 
     override fun equals(other: Any?) = other is MalList
@@ -19,6 +22,13 @@ class MalList(val elements: ArrayList<MalType>) : MalType {
 }
 
 class MalNumber(val value: Int) : MalType {
+
+    operator fun plus(other: MalNumber) = MalNumber(value + other.value)
+    operator fun minus(other: MalNumber) = MalNumber(value - other.value)
+    operator fun times(other: MalNumber) = MalNumber(value * other.value)
+    operator fun div(other: MalNumber) = MalNumber(value / other.value)
+    operator fun compareTo(other: MalNumber) = value.compareTo(other.value)
+
     override fun equals(other: Any?) = other is MalNumber && value == other.value
 }
 
@@ -28,6 +38,11 @@ class MalSymbol(val value: String) : MalType {
 
 class MalString(val value: String) : MalType {
     override fun equals(other: Any?) = other is MalString && value == other.value
+}
+
+class MalFunction(val lambda: (MalList) -> MalType) : MalType {
+
+    fun apply(params: MalList) = lambda(params)
 }
 
 open class MalException(message: String) : Exception(message), MalType
