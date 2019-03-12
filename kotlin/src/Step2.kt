@@ -8,29 +8,30 @@ fun main(args: Array<String>) {
 fun read(string: String) = readStr(string)
 
 fun eval(ast: MalType, env: HashMap<String, MalFunction>) =
-    when (ast) {
-        is MalList ->
-            if (ast.elements.isEmpty()) ast
-            else evalAST(ast, env).let { list ->
-                when (list) {
-                    !is MalList -> throw MalException("Expected list not found: $list.")
-                    else -> {
-                        list.head.let { func ->
-                            when (func) {
-                                !is MalFunction -> throw MalException("Expected function not found: $func.")
-                                else -> func.apply(list.tail)
+    when {
+        ast !is MalList -> evalAST(ast, env)
+        ast.elements.isEmpty() -> ast
+        else -> evalAST(ast, env).let { list ->
+            when (list) {
+                !is MalList -> throw MalException("Expected list not found: $list.")
+                else -> {
+                    list.head()?.let { func ->
+                        when (func) {
+                            !is MalFunction -> throw MalException("Expected function not found: $func.")
+                            else -> {
+                                func.apply(list.tail())
                             }
                         }
-                    }
+                    } ?: throw MalException("Unexpected empty list: $list.")
                 }
             }
-        else -> evalAST(ast, env)
+        }
     }
 
 private fun evalAST(ast: MalType, env: HashMap<String, MalFunction>): MalType =
     when (ast) {
-        is MalSymbol -> env[ast.value] ?: throw MalException("Atom not found: ${ast.value}.")
-        is MalList -> ast.apply { elements.map { evalAST(it, env) } }
+        is MalSymbol -> env[ast.value] ?: throw MalException("Symbol not found: ${ast.value}.")
+        is MalList -> ast.elements.fold(MalList()) { list, elem -> list.apply { add(eval(elem, env)) } }
         else -> ast
     }
 
