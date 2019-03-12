@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 internal class Step1Test {
 
     @Test
-    fun testingReadOfNumbers() {
+    fun testReadOfNumbers() {
         assertEquals("1", rep("1"))
         assertEquals("7", rep("7"))
         assertEquals("7", rep("  7   "))
@@ -15,7 +15,7 @@ internal class Step1Test {
     }
 
     @Test
-    fun testingReadOfSymbols() {
+    fun testReadOfSymbols() {
         assertEquals("+", rep("+"))
         assertEquals("abc", rep("abc"))
         assertEquals("abc", rep("   abc   "))
@@ -24,14 +24,14 @@ internal class Step1Test {
     }
 
     @Test
-    fun testingNonNumbersStartingWithADash() {
+    fun testNonNumbersStartingWithADash() {
         assertEquals("-", rep("-"))
         assertEquals("-abc", rep("-abc"))
         assertEquals("->>", rep("->>"))
     }
 
     @Test
-    fun testingReadOfLists() {
+    fun testReadOfLists() {
         assertEquals("(+ 1 2)", rep("(+ 1 2)"))
         assertEquals("()", rep("()"))
         assertEquals("(nil)", rep("(nil)"))
@@ -49,22 +49,22 @@ internal class Step1Test {
     }
 
     @Test
-    fun testingReadOfNil() {
+    fun testReadOfNil() {
         assertEquals("nil", rep("nil"))
     }
 
     @Test
-    fun testingReadOfTrue() {
+    fun testReadOfTrue() {
         assertEquals("true", rep("true"))
     }
 
     @Test
-    fun testingReadOfFalse() {
+    fun testReadOfFalse() {
         assertEquals("false", rep("false"))
     }
 
     @Test
-    fun testingReadOfStrings() {
+    fun testReadOfStrings() {
         assertEquals("\"abc\"", rep("\"abc\""))
         assertEquals("\"abc\"", rep("   \"abc\"   "))
         assertEquals("\"abc (with parens)\"", rep("\"abc (with parens)\""))

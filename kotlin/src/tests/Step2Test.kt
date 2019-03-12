@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 class Step2Test {
 
     @Test
-    fun testingEvaluationOfArithmeticOperations() {
+    fun testEvaluationOfArithmeticOperations() {
         assertEquals("3", rep("(+ 1 2)"))
         assertEquals("11", rep("(+ 5 (* 2 3))"))
         assertEquals("8", rep("(- (+ 5 (* 2 3)) 3)"))
@@ -18,12 +18,12 @@ class Step2Test {
     }
 
     @Test(expected = Exception::class)
-    fun testingInvalidInputThrowsException() {
+    fun testInvalidInputThrowsException() {
         rep("(abc 1 2 3)")
     }
 
     @Test
-    fun testingEmptyList() {
+    fun testEmptyList() {
         assertEquals("()", rep("()"))
     }
 
