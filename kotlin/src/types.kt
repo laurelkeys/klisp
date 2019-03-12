@@ -11,8 +11,8 @@ val FALSE = MalConstant("false")
 class MalList(val elements: ArrayList<MalType>) : MalType {
     constructor() : this(ArrayList<MalType>())
 
-    val head: MalType = elements.first()
-    val tail: MalList = apply { elements.drop(1) }
+    fun head(): MalType? = elements.firstOrNull()
+    fun tail(): MalList = MalList(ArrayList(elements.drop(1)))
 
     fun add(element: MalType) = elements.add(element)
 
@@ -42,7 +42,7 @@ class MalString(val value: String) : MalType {
 
 class MalFunction(val lambda: (MalList) -> MalType) : MalType {
 
-    fun apply(params: MalList) = lambda(params)
+    fun apply(params: MalList): MalType = lambda.invoke(params)
 }
 
 open class MalException(message: String) : Exception(message), MalType
