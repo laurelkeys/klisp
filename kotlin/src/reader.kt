@@ -19,10 +19,13 @@ fun readForm(reader: Reader): MalType = when (reader.peek()) {
 
 fun readList(reader: Reader): MalType = MalList().also {
     if (reader.next() != "(") throw MalReaderException("Expected '(' not found.")
+
     while (reader.peek() != ")") {
         if (reader.peek() == null) throw MalReaderException("Expected ')' not found.") // EOF
         it.add(readForm(reader))
     }
+
+    reader.next()
 }
 
 fun readAtom(reader: Reader): MalType = reader.next()?.let { next ->
