@@ -3,6 +3,8 @@ package main
 interface MalType
 
 class MalConstant(val value: String) : MalType {
+
+    override fun hashCode() = value.hashCode()
     override fun equals(other: Any?) = other is MalConstant && value == other.value
 }
 
@@ -15,9 +17,9 @@ class MalList(val elements: ArrayList<MalType>) : MalType {
 
     fun head(): MalType? = elements.firstOrNull()
     fun tail(): MalList = MalList(ArrayList(elements.drop(1)))
-
     fun add(element: MalType) = elements.add(element)
 
+    override fun hashCode() = elements.hashCode()
     override fun equals(other: Any?) = other is MalList
             && elements.size == other.elements.size
             && elements.zip(other.elements).all { it.first == it.second }
@@ -31,18 +33,23 @@ class MalNumber(val value: Int) : MalType {
     operator fun div(other: MalNumber) = MalNumber(value / other.value)
     operator fun compareTo(other: MalNumber) = value.compareTo(other.value)
 
+    override fun hashCode() = value
     override fun equals(other: Any?) = other is MalNumber && value == other.value
 }
 
 class MalSymbol(val value: String) : MalType {
+
+    override fun hashCode() = value.hashCode()
     override fun equals(other: Any?) = other is MalSymbol && value == other.value
 }
 
 class MalString(val value: String) : MalType {
+
+    override fun hashCode() = value.hashCode()
     override fun equals(other: Any?) = other is MalString && value == other.value
 }
 
-class MalFunction(val lambda: (MalList) -> MalType) : MalType {
+class MalFunction(private val lambda: (MalList) -> MalType) : MalType {
 
     fun apply(params: MalList): MalType = lambda.invoke(params)
 }
