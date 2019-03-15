@@ -1,4 +1,9 @@
-object Step0 {
+package main
+
+import main.Printer.printStr
+import main.Reader.Companion.readStr
+
+object Step1 {
 
     fun main(args: Array<String>) {
         while (true) {
@@ -7,11 +12,12 @@ object Step0 {
         }
     }
 
-    fun read(string: String) = string
+    fun read(string: String) = readStr(string)
 
-    fun eval(string: String) = string
+    fun eval(string: MalType) = string
 
-    fun print(string: String) = string
+    fun print(string: MalType) = printStr(string)
 
     fun rep(string: String) = print(eval(read(string)))
 }
+

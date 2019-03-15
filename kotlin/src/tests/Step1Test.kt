@@ -1,6 +1,6 @@
 package tests
 
-import Step1.rep
+import main.Step1.rep
 import org.junit.Test
 import kotlin.test.assertEquals
 

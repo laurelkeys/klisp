@@ -1,3 +1,5 @@
+package main
+
 interface MalType
 
 class MalConstant(val value: String) : MalType {

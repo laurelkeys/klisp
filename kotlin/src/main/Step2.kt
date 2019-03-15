@@ -1,3 +1,8 @@
+package main
+
+import main.Printer.printStr
+import main.Reader.Companion.readStr
+
 object Step2 {
 
     fun main(args: Array<String>) {
