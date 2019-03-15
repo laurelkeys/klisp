@@ -18,18 +18,13 @@ object Step2 {
         when {
             ast !is MalList -> evalAST(ast, env)
             ast.elements.isEmpty() -> ast
-            else -> evalAST(ast, env).let { list ->
-                when (list) {
-                    !is MalList -> throw MalException("Expected list not found: $list.")
-                    else -> {
-                        list.head()?.let { func ->
-                            when (func) {
-                                !is MalFunction -> throw MalException("Expected function not found: $func.")
-                                else -> func.apply(list.tail())
-                            }
-                        } ?: throw MalException("Unexpected empty list: $list.")
-                    }
-                }
+            else -> with(evalAST(ast, env)) {
+                if (this !is MalList) throw MalException("Expected list not found: $this.")
+
+                val (func, args) = head() to tail()
+                if (func !is MalFunction) throw MalException("Expected function not found: $func.")
+
+                func.apply(args)
             }
         }
 
