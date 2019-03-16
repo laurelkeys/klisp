@@ -15,9 +15,21 @@ val FALSE = MalConstant("false")
 class MalList(val elements: ArrayList<MalType>) : MalType {
     constructor() : this(ArrayList<MalType>())
 
-    fun head(): MalType? = elements.firstOrNull()
+    fun head(): MalType = elements.first()
     fun tail(): MalList = MalList(ArrayList(elements.drop(1)))
-    fun add(element: MalType) = elements.add(element)
+
+    fun add(element: MalType) {
+        elements.add(element)
+    }
+
+    fun isSpecialForm(value: String) = head().let { head ->
+        head is MalSymbol && head.value == value && value in SpecialForm.values().map { it.value }
+    }
+
+    enum class SpecialForm(val value: String) {
+        DEF("def!"),
+        LET("let*")
+    }
 
     override fun hashCode() = elements.hashCode()
     override fun equals(other: Any?) = other is MalList
