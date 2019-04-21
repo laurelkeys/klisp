@@ -1,10 +1,10 @@
-package tests
+package klisp
 
-import main.Step0.rep
+import klisp.Step0.rep
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class Step0Test {
+class Step0Test {
 
     @Test
     fun testBasicString() {

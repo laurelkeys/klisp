@@ -1,8 +1,8 @@
-package main
+package klisp
 
 object Step3 {
 
-    fun main(args: Array<String>) {
+    fun main() {
 
         val env = Env(outer = null).apply {
             set(MalSymbol("+"),

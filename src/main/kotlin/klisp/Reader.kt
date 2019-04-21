@@ -1,4 +1,4 @@
-package main
+package klisp
 
 class Reader(private val tokens: Sequence<String>) {
 

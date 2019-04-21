@@ -1,10 +1,10 @@
-package tests
+package klisp
 
-import main.Step1.rep
+import klisp.Step1.rep
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class Step1Test {
+class Step1Test {
 
     @Test
     fun testReadOfNumbers() {

@@ -1,8 +1,8 @@
-package main
+package klisp
 
 object Step0 {
 
-    fun main(args: Array<String>) {
+    fun main() {
         while (true) {
             val input = readLine() ?: break // break if null (EOF)
             println("user> ${rep(input)}")

@@ -1,11 +1,11 @@
-package main
+package klisp
 
-import main.Printer.printStr
-import main.Reader.Companion.readStr
+import klisp.Printer.printStr
+import klisp.Reader.Companion.readStr
 
 object Step2 {
 
-    fun main(args: Array<String>) {
+    fun main() {
         while (true) {
             val input = readLine() ?: break // break if null (EOF)
             println("user> ${rep(input)}")

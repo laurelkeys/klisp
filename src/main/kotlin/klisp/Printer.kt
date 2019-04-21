@@ -1,4 +1,4 @@
-package main
+package klisp
 
 object Printer {
 
@@ -8,6 +8,6 @@ object Printer {
         is MalNumber   -> data.value.toString()
         is MalSymbol   -> data.value
         is MalString   -> data.value
-        else -> throw MalPrinterException("Unrecognized main.MalType: $data.")
+        else -> throw MalPrinterException("Unrecognized klisp.MalType: $data.")
     }
 }

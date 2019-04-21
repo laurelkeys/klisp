@@ -1,7 +1,6 @@
-package tests
+package klisp
 
-import main.*
-import main.Step3.rep
+import klisp.Step3.rep
 import org.junit.Test
 import kotlin.test.assertEquals
 

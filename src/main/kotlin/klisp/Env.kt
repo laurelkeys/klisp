@@ -1,4 +1,4 @@
-package main
+package klisp
 
 class Env(private val outer: Env?) : MalType {
 
